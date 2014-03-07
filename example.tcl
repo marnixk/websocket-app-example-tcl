@@ -22,6 +22,8 @@ array set config {
 		"//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
 		"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"
 	}
+
+	assets "./public/assets"
 }
 
 

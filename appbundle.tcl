@@ -8,8 +8,8 @@ namespace eval Startup::application-resource-bundle {
 	proc on-connect {chan} {
 		global config
 
-		array set templates [find-templates "./public/assets/html"]
-		set rel_scripts [find-files "./public/assets" "js"]
+		array set templates [find-templates "$config(assets)/html"]
+		set rel_scripts [find-files "$config(assets)/assets" "js"]
 
 		set base_url "//wsapp.local/assets"
 		foreach script $rel_scripts {
