@@ -1,12 +1,15 @@
 proc glob-r {{dir .} ext} {
-    set res {}
+ 	
+ 	lappend res
 
     set sorted_list [lsort [glob -nocomplain -dir $dir *]]
 
     foreach file $sorted_list {
 
         if {[file type $file] == "directory"} {
-            eval lappend res [glob-r $file $ext]
+        	foreach child [glob-r $file $ext] {
+        		lappend res $child
+        	}
         } else {
         	if {[string first ".$ext" $file] > 0} then {
 	            lappend res [string range $file 1 end]
@@ -48,9 +51,9 @@ proc find-templates {base_dir {ext "html"}} {
 	foreach file $files {
 
 		# construct template identifier
-		set file_id $file
-		set file_id [string map {".$ext" ""} $file_id]
-		set file_id [string map {"/" "."} $file_id]
+		set file_id [string range $file 1 end]
+		set file_id [string map {.html ""} $file_id]
+		set file_id [string map {/ .} $file_id]
 
 		# get template content
 		set tpl_f [open "$base_dir/$file" r]

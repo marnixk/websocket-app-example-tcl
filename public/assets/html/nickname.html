@@ -1,0 +1,21 @@
+<div ng-controller="NickNameController">
+	<form ng-submit="enterChat()">
+		<div class="modal" style="display:block;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Enter at your own peril.</h4>
+					</div>
+
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="Enter your nickname &hellip;" ng-model="nickname" />
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" data-dismiss="modal">Enter</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

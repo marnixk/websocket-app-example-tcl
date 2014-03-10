@@ -10,18 +10,18 @@
 
 	window.getTemplate = function(name) {
 		return templates[name];
-	}
+	};
 
 	window.getAllTemplates = function() {
 		return templates;
-	}
+	};
 
 	window.registerAction = function(action, func) {
 		if (!actions[action]) {
 			actions[action] = [];
 		}
 		actions[action].push(func);
-	}
+	};
 
 	window.sendMessage = function(action, payload) {
 		ws.send(
@@ -30,7 +30,7 @@
 				payload: payload
 			})
 		);
-	}
+	};
 
 	window.wsBoot = function(host, view) { 
 
@@ -64,6 +64,12 @@
 		}
 		catch (ex) {
 			console.error("Could not parse: " + evt.data);
+			return;
+		}
+
+		if (data.status && data.status === "error") {
+			console.error("An error occured: " + data.error);
+			console.log(data);
 			return;
 		}
 
@@ -116,6 +122,42 @@
 			if (data.templates) {
 				templates = data.templates;
 			}
+
+			// page to load?
+			if (data.page) {
+				if (templates[data.page]) {
+					var content = templates[data.page];
+					document.getElementById("app").innerHTML = content;
+				}
+				else {
+					console.error("No template to load for page called `" + data.page + "`")
+				}
+			}
+		});
+
+		/**
+		 * Loads a page onto the screen and reinitializes angular.
+		 */
+		registerAction("load-page", function(data) {
+
+			// page to load?
+			if (data.page) {
+				if (templates[data.page]) {
+					
+					// replace content
+					var content = templates[data.page];
+					document.getElementById("app").innerHTML = content;
+					
+					// initialize.
+					if (jQuery) {
+					 	$("body").trigger("load-complete");
+					}
+				}
+				else {
+					console.error("No template to load for page called `" + data.page + "`")
+				}
+			}
+
 		});
 		
 
@@ -149,6 +191,7 @@
 					}, 0);
 				}
 				else {
+					$("body").trigger("load-complete", []);
 					sendMessage("load-complete", {});
 				}
 			};

@@ -1,0 +1,47 @@
+body {
+	background-color: #2E3037;
+	overflow-y: auto;
+	height: 100%;
+}
+
+.chatbox {
+}
+
+.chat-list {
+	position: absolute;
+	top: 20px;
+	bottom: 50px;
+	left: 11px;
+	right: 13px;
+	overflow-y: scroll;
+}
+
+.chat-line {
+	position: absolute;
+
+	bottom: 50px;
+	left: 5px;
+	right: 5px;
+}
+
+.chat-line form {
+	position: relative;
+}
+
+.chat-line input[type='text'] {
+	position: absolute;
+	width: auto;
+	right: 70px;
+	left: 7px;
+	top: 0px;
+}
+
+.chat-line button {
+	position: absolute;
+	right: 5px;
+	top: 2px;
+}
+
+.chatbox .msg {
+	margin-bottom: 5px;
+}
