@@ -33,7 +33,7 @@ namespace eval Startup::application-resource-bundle {
 			styles 			[j'list $config(styles)] \
 			javascripts		[j'list $scripts] \
 			templates		[json::array templates] \
-			page			[j' "nickname"]
+			page			[j' $config(start-page)]
 		]]
 
 	}

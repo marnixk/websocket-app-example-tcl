@@ -10,16 +10,10 @@ namespace eval Action::set-nickname {
 
 		Participant::joined $chan $name
 
-		redirect-to-new-page $chan
+		app'load-page $chan "chat"
 		notify-others $chan $name
 	}
 
-	#
-	#	Make 'm go to the chat area
-	#
-	proc redirect-to-new-page {chan} {
-		Websocket::send-message $chan [jsonrpc'message "load-page" [list page [j' "chat"]]]
-	}
 
 	#
 	#   Notify others of your arrival

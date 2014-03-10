@@ -5,7 +5,8 @@ lappend auto_path [glob "/home/marnix/Programming/tcl/packages/*"]
 package require json
 package require websockets
 
-source "files.tcl"
+source "utils/files.tcl"
+source "utils/apputil.tcl"
 
 # actions 
 source "actions/startup.tcl"
@@ -18,7 +19,10 @@ source "actions/message.tcl"
 source "model/participants.tcl"
 
 # application bundle definition
+
 array set config {
+
+	development-mode true
 
 	styles {
 		"//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
@@ -36,10 +40,10 @@ array set config {
 		"//cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.3/underscore.string.min.js"
 	}
 
-	assets "./public/assets"
+	assets "../public/assets"
+	start-page "nickname"
+	wsport 1337
 
-	development-mode true
 }
 
-
-Websocket::start 1337 
+app'start

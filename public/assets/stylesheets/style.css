@@ -45,3 +45,7 @@ body {
 .chatbox .msg {
 	margin-bottom: 5px;
 }
+
+.chatbox .alert {
+	margin-bottom: 10px;
+}
