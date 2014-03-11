@@ -1,7 +1,5 @@
 angular.module("app").controller("ChatController", function($scope) {
 
-	console.log("loaded the chat controller");
-
 	$scope.message = "";
 	$scope.messageList = [];
 
@@ -12,6 +10,7 @@ angular.module("app").controller("ChatController", function($scope) {
 		$scope.message = "";
 	}
 
+
 	/**
 	 * If a message is received, store it and trigger apply
 	 */
@@ -21,7 +20,8 @@ angular.module("app").controller("ChatController", function($scope) {
 			from : data.name,
 			content  :data.message
 		});
-		$scope.$apply();
+
+		update();
 	})
 
 	/**
@@ -32,7 +32,8 @@ angular.module("app").controller("ChatController", function($scope) {
 			type : "success",
 			content : data.name + " joined the chat!"
 		});
-		$scope.$apply();
+
+		update();
 	});
 
 
@@ -41,8 +42,14 @@ angular.module("app").controller("ChatController", function($scope) {
 			type : "warning",
 			content : data.name + " sadly left the chat."
 		});
-		$scope.$apply();
-
+		update();
 	});
+
+
+	function update() {
+		$scope.$digest();
+		var chatlist = $('.chat-list');
+		chatlist.scrollTop(chatlist.prop('scrollHeight'));
+	}
 
 });
