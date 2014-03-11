@@ -4,5 +4,7 @@ proc app'load-page {chan page} {
 
 proc app'start {} {
 	global config
-	Websocket::start $config(wsport)
+	files'add-context "[pwd]/../public"
+	puts "[pwd]/../public"
+	HttpServer::start $config(wsport)
 }

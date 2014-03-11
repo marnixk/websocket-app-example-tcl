@@ -47,7 +47,8 @@ namespace eval Participant {
 		# remove from list
 		set members [lreplace $members $idx $idx]
 
-		array unset $chan_nick_map($chan)
+		# remove from mapping
+		array unset chan_nick_map $chan
 	}
 
 }

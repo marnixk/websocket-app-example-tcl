@@ -1,9 +1,13 @@
 #!/usr/bin/tclsh
 
-lappend auto_path [glob "/home/marnix/Programming/tcl/packages/*"]
+foreach dir [glob "/home/marnix/Programming/tcl/packages/*"] {
+	lappend auto_path $dir
+}
 
 package require json
+package require httpserver
 package require websockets
+package require wsbootstrap
 
 source "utils/files.tcl"
 source "utils/apputil.tcl"
