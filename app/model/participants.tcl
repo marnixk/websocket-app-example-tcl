@@ -13,6 +13,7 @@ namespace eval Participant {
 
 		lappend members $name
 		set chan_nick_map($chan) $name
+
 	}
 
 	#

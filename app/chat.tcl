@@ -9,18 +9,11 @@ package require httpserver
 package require websockets
 package require wsbootstrap
 
-source "utils/files.tcl"
-source "utils/apputil.tcl"
-
-# actions 
-source "actions/startup.tcl"
-source "actions/load-complete.tcl"
-source "actions/set-nickname.tcl"
-source "actions/leave-chat.tcl"
-source "actions/message.tcl"
-
-# model
-source "model/participants.tcl"
+source'load { 
+	"./utils" 
+	"./actions" 
+	"./model" 
+} 
 
 # application bundle definition
 
@@ -33,7 +26,7 @@ array set config {
 		"//netdna.bootstrapcdn.com/bootswatch/3.1.1/lumen/bootstrap.min.css"
 		"//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
 
-		"/assets/stylesheets/style.css"
+		"/stylesheets/style.css"
 	}
 
 	javascript {
@@ -44,7 +37,6 @@ array set config {
 		"//cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.3/underscore.string.min.js"
 	}
 
-	assets "../public/assets"
 	start-page "nickname"
 	wsport 1337
 
