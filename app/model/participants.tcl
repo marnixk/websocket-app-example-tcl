@@ -1,7 +1,7 @@
 namespace eval Participant {
 
 	variable chan_nick_map
-	variable members
+	variable members 
 	variable chat
 
 	#
@@ -11,8 +11,16 @@ namespace eval Participant {
 		variable members 
 		variable chan_nick_map
 
-		lappend members $name
-		set chan_nick_map($chan) $name
+		if {![info exists members]} {
+			set members {}
+		}
+
+		|| {members} { 
+			Observable::subscribe $chan members
+			lappend members $name 
+			set chan_nick_map($chan) $name
+		}
+
 
 	}
 
@@ -39,17 +47,21 @@ namespace eval Participant {
 		variable members 
 		variable chan_nick_map
 
-		# get nick name for this channel
-		set name $chan_nick_map($chan)
+		|| {members} { 
+			
+			# get nick name for this channel
+			set name $chan_nick_map($chan)
 
-		# find member name index
-		set idx [lsearch $members $name]
+			# find member name index
+			set idx [lsearch $members $name]
 
-		# remove from list
-		set members [lreplace $members $idx $idx]
+			# remove from list
+			set members [lreplace $members $idx $idx] 
 
-		# remove from mapping
-		array unset chan_nick_map $chan
+			# remove from mapping
+			array unset chan_nick_map $chan
+		}
+
 	}
 
 }

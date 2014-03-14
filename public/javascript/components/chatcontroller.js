@@ -1,15 +1,35 @@
 angular.module("app").controller("ChatController", function($scope) {
 
-	$scope.message = "";
-	$scope.messageList = [];
 
-	$scope.sendChat = function() {
-		sendMessage("message", {
-			message : $scope.message
-		});
-		$scope.message = "";
-	}
+	_.extend($scope, {
 
+		memberList : {},
+		message : "",
+		messageList : [],
+
+		/**
+		 * Sends a chat message over the websocket
+		 */
+		sendChat : function() {
+			sendMessage("message", { message : $scope.message });
+			$scope.message = "";
+		},
+
+		/**
+		 * New content is available, make sure the list is updated and we 
+		 * scroll the textarea down.
+		 */
+		update : function() {
+			$scope.$digest();
+
+			var chatlist = $('.chat-list');
+			chatlist.scrollTop(chatlist.prop('scrollHeight'));
+		}
+	});
+
+
+	// setup remote watch on 'members' variable
+	observe("members", $scope, "memberlist");
 
 	/**
 	 * If a message is received, store it and trigger apply
@@ -21,7 +41,7 @@ angular.module("app").controller("ChatController", function($scope) {
 			content  :data.message
 		});
 
-		update();
+		$scope.update();
 	})
 
 	/**
@@ -33,7 +53,7 @@ angular.module("app").controller("ChatController", function($scope) {
 			content : data.name + " joined the chat!"
 		});
 
-		update();
+		$scope.update();
 	});
 
 
@@ -42,14 +62,7 @@ angular.module("app").controller("ChatController", function($scope) {
 			type : "warning",
 			content : data.name + " sadly left the chat."
 		});
-		update();
+		$scope.update();
 	});
-
-
-	function update() {
-		$scope.$digest();
-		var chatlist = $('.chat-list');
-		chatlist.scrollTop(chatlist.prop('scrollHeight'));
-	}
 
 });

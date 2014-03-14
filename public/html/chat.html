@@ -1,6 +1,12 @@
 <div class="chatbox" ng-controller="ChatController">
 
+	<div class="member-list well well-sm">
+		<h2>People in chat</h2>
+		<p ng-repeat="member in memberlist">{{member}}</p>
+	</div>
+
 	<div class="chat-list well well-sm">
+
 		<div class="alert alert-info">
 			You've joined the chatroom
 		</div>
