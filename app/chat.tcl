@@ -45,8 +45,4 @@ array set config {
 
 }
 
-db'connect -user root -password r2d2c3po -db tclmysql
-
 app'start
-
-db'close
