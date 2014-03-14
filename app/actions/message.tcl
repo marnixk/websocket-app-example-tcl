@@ -7,10 +7,12 @@ namespace eval Action::message {
 		set message $payload(message)
 		set name [Participant::name_for_chan $chan]
 
-		Websocket::broadcast $chan [jsonrpc'message "received-message" [list \
-								name [j' $name] \
-								message [j' $message] \
-							]] 0
+		set jsonmessage [jsonrpc'message "received-message" [list \
+							name [j' $name] \
+							message [j' $message] \
+						]]
+
+		Messagebus::notify "chat" $jsonmessage
 	}
 
 }

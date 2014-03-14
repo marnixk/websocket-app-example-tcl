@@ -20,6 +20,8 @@ namespace eval Action::set-nickname {
 	#
 	proc notify-others {chan name} {
 		set output(name) $name
-		Websocket::broadcast $chan [jsonrpc'message "joined" [list name [j' $name]]]
+
+		Messagebus::subscribe $chan "chat"
+		Messagebus::notify "chat" [jsonrpc'message "joined" [list name [j' $name]]]
 	}
 }

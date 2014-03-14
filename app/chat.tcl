@@ -8,6 +8,9 @@ package require json
 package require httpserver
 package require websockets
 package require wsbootstrap
+package require activetcl
+package require log
+
 
 source'load { 
 	"./utils" 
@@ -42,4 +45,8 @@ array set config {
 
 }
 
+db'connect -user root -password r2d2c3po -db tclmysql
+
 app'start
+
+db'close

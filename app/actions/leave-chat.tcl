@@ -9,7 +9,7 @@ namespace eval Shutdown::LeaveChat {
 		set name [Participant::name_for_chan $chan]
 		if {$name != ""} then {
 			Participant::left $chan
-			Websocket::broadcast $chan [jsonrpc'message "left" [list name [j' $name]]]
+			Messagebus::notify "chat" [jsonrpc'message "left" [list name [j' $name]]]
 		}
 	}
 
