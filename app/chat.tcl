@@ -1,6 +1,6 @@
 #!/usr/bin/tclsh
 
-foreach dir [glob "/home/marnix/Programming/tcl/packages/*"] {
+foreach dir [glob "../packages/*"] {
 	lappend auto_path $dir
 }
 
@@ -41,7 +41,7 @@ array set config {
 	}
 
 	start-page "nickname"
-	wsport 1337
+	wsport 8080
 
 }
 

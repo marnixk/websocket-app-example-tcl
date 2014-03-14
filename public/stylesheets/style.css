@@ -73,6 +73,7 @@ body {
 
 .chatbox .msg {
 	margin-bottom: 5px;
+	font-family: monospace;
 }
 
 .chatbox .alert {

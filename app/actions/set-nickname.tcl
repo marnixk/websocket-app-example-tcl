@@ -18,7 +18,7 @@ namespace eval Action::set-nickname {
 		app'load-page $chan "chat"
 		notify-others $chan $name
 
-		Messagebus::subscribe $chan chat
+		Messagebus::subscribe $chan "chat"
 	}
 
 
@@ -28,6 +28,6 @@ namespace eval Action::set-nickname {
 	proc notify-others {chan name} {
 		set output(name) $name
 
-		Messagebus::notify chat [jsonrpc'message "joined" [list name [j' $name]]]
+		Messagebus::notify "chat" [jsonrpc'message "joined" [list name [j' $name]]]
 	}
 }
