@@ -13,6 +13,9 @@ namespace eval Action::message {
 						]]
 
 		Messagebus::notify "chat" $jsonmessage
+
+		# nothing to return
+		return 
 	}
 
 }

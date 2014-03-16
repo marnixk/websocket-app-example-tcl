@@ -15,10 +15,19 @@ namespace eval Action::set-nickname {
 
 		Participant::joined $chan $name
 
-		app'load-page $chan "chat"
+		# change page
+		# app'load-page $chan "chat"
+
+		# show others a new user joined.
 		notify-others $chan $name
 
+		# should listen to chat events
 		Messagebus::subscribe $chan "chat"
+
+		# return a message 
+		array set msg [jsonrpc'respond-to $data]
+		set msg(help) [j' "this is just some string"]
+		return [array get msg]
 	}
 
 
