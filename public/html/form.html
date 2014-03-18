@@ -1,0 +1,94 @@
+<div ng-controller="FormSubmitController">
+
+	<form ng-submit="submitValues()" role="form">
+		<div class="modal" style="display:block;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Form</h4>
+					</div>
+
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Nickname:</label>
+							<input type="text" class="form-control" ng-model="form.nickname" name="nickname" />
+						</div>
+
+						<div class="form-group">
+							<label>Name:</label>
+							<input type="text" class="form-control" ng-model="form.name" name="name" />
+						</div>
+
+
+						<div class="form-group">
+							<label>Groupies:</label>
+							<input type="text" class="form-control" ng-model="form.groupies" name="groupies" />
+						</div>
+
+						<div class="form-group">
+							<label>Email:</label>
+							<input type="text" class="form-control" ng-model="form.email" name="email" />
+						</div>
+
+						<div class="form-group">
+							<label>Birthday:</label>
+							<input type="date" class="form-control" ng-model="form.birthday" name="birthday" />
+						</div>
+
+						<div class="form-group">
+							<label>Password:</label>
+							<input type="password" class="form-control" ng-model="form.password" name="password" />
+						</div>
+
+						<div class="form-group">
+							<label>Confirm password:</label>
+							<input type="password" class="form-control" ng-model="form.confirmpassword" name="confirmpassword" />
+						</div>
+
+						<div class="form-group">
+							<label>Gender</label>
+
+							<div class="radio">
+								<label>
+									<input type="radio" ng-model="form.gender" value="male" />
+									Male
+								</label>
+							</div>
+
+							<div class="radio">
+								<label>
+									<input type="radio" ng-model="form.gender" value="female" />
+									Female
+								</label>
+							</div>
+
+							<div class="radio">
+								<label>
+									<input type="radio" ng-model="form.gender" value="unknown" name="gender" />
+									Unknown species
+								</label>
+							</div>
+
+						</div>
+
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" ng-model="form.accept" name="accept" />
+									I accept the terms of service
+								</label>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</div>

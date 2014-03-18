@@ -4,6 +4,13 @@
 namespace eval Action::set-nickname {
 
 	#
+	#	Add validation variable to namespace
+	#
+	variable validate {
+		name: required
+	}
+
+	#
 	#	When the message arrives, unwrap it, set the nickname
 	#	signal the application to load a different page and notify
 	#	the others on the 'chat' topic that someone has joined.
@@ -16,7 +23,7 @@ namespace eval Action::set-nickname {
 		Participant::joined $chan $name
 
 		# change page
-		# app'load-page $chan "chat"
+		app'load-page $chan "chat"
 
 		# show others a new user joined.
 		notify-others $chan $name
@@ -24,10 +31,7 @@ namespace eval Action::set-nickname {
 		# should listen to chat events
 		Messagebus::subscribe $chan "chat"
 
-		# return a message 
-		array set msg [jsonrpc'respond-to $data]
-		set msg(help) [j' "this is just some string"]
-		return [array get msg]
+		return
 	}
 
 

@@ -9,6 +9,7 @@ package require httpserver
 package require websockets
 package require wsbootstrap
 package require activetcl
+package require validators
 package require log
 
 
@@ -40,7 +41,7 @@ array set config {
 		"//cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.3/underscore.string.min.js"
 	}
 
-	start-page "nickname"
+	start-page "form"
 	wsport 8080
 
 }

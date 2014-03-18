@@ -1,9 +1,16 @@
-body {
-	background-color: #2E3037;
-	overflow-y: auto;
+html {
 	height: 100%;
 }
 
+body {
+	background: url(http://dbvantage.com/wp-content/uploads/2013/02/landscapes_minimalistic_blurred-1920x1200.jpg) no-repeat 50% 50%;
+	overflow-y: auto;
+	min-height: 100%;
+}
+
+label {
+	font-weight: 600;
+}
 .chatbox {
 }
 
@@ -78,4 +85,11 @@ body {
 
 .chatbox .alert {
 	margin-bottom: 10px;
+}
+
+.error-feedback {
+	color: #a00;
+	font-size: 12px;
+	margin-top: 6px
+	display: block;
 }
