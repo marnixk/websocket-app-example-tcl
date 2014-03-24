@@ -1,18 +1,38 @@
+struct incomingmsg {
+	message val
+}
+
+struct messagenotification {
+	name val
+	message val
+}
+
 namespace eval Action::message {
 
 	proc on-message {chan data} {
-		array set data_arr $data
-		array set payload $data_arr(payload)
 
-		set message $payload(message)
+		# cast to 'message'
+		set data [cast $data message]
+
+		# get payload, cast to 'incomingmsg'
+		set incoming [cast [message.payload data] incomingmsg]
+
+		# get name
 		set name [Participant::name_for_chan $chan]
 
-		set jsonmessage [jsonrpc'message "received-message" [list \
-							name [j' $name] \
-							message [j' $message] \
-						]]
+		# get message from incoming message
+		set message [incomingmsg.message incoming]
 
-		Messagebus::notify "chat" $jsonmessage
+		# generate outgoing message
+		set outgoingmessage [create messagenotification {
+				name $name
+				message $message
+			}]
+
+		# send.
+		set outgoing [jsonrpc'message "received-message" $outgoingmessage]
+
+		Messagebus::notify "chat" $outgoing
 
 		# nothing to return
 		return 

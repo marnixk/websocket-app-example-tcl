@@ -1,4 +1,9 @@
+struct leftchat {
+	name val
+}
+
 namespace eval Shutdown::LeaveChat {
+
 
 	jsonrpc'has-on-close-callback
 
@@ -9,7 +14,12 @@ namespace eval Shutdown::LeaveChat {
 		set name [Participant::name_for_chan $chan]
 		if {$name != ""} then {
 			Participant::left $chan
-			Messagebus::notify "chat" [jsonrpc'message "left" [list name [j' $name]]]
+			
+			# what to return
+			set payload [create leftchat { name $name }]
+
+			# send message
+			Messagebus::notify "chat" [jsonrpc'message "left" $payload]
 		}
 	}
 

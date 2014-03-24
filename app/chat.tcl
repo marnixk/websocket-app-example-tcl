@@ -17,12 +17,14 @@ source'load {
 	"./utils" 
 	"./actions" 
 	"./model" 
+	"./cachemanifest"
 } 
 
 # application bundle definition
 
-array set config {
+# set config(version) 1.0
 
+array set config {
 	development-mode true
 
 	styles {
@@ -41,7 +43,7 @@ array set config {
 		"//cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.3/underscore.string.min.js"
 	}
 
-	start-page "form"
+	start-page "nickname"
 	wsport 8080
 
 }

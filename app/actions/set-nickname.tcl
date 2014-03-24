@@ -3,6 +3,10 @@
 #
 namespace eval Action::set-nickname {
 
+	struct joinedchat {
+		name val
+	}
+
 	#
 	#	Add validation variable to namespace
 	#
@@ -41,6 +45,8 @@ namespace eval Action::set-nickname {
 	proc notify-others {chan name} {
 		set output(name) $name
 
-		Messagebus::notify "chat" [jsonrpc'message "joined" [list name [j' $name]]]
+		set payload [create joinedchat { name $name }]
+
+		Messagebus::notify "chat" [jsonrpc'message "joined" $payload]
 	}
 }
